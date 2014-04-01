@@ -1,4 +1,4 @@
-VAcationCalendar::Application.routes.draw do
+VacationCalendar::Application.routes.draw do
   resources :events
 
   resources :employees

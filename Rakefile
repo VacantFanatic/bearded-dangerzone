@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-VAcationCalendar::Application.load_tasks
+VacationCalendar::Application.load_tasks
