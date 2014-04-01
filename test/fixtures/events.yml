@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  uid: MyString
   type: 
-  startDate: 
-  endDate: 
+  start: 2014-04-01 15:17:53
+  end: 2014-04-01 15:17:53
+  uid: MyString
 
 two:
-  uid: MyString
   type: 
-  startDate: 
-  endDate: 
+  start: 2014-04-01 15:17:53
+  end: 2014-04-01 15:17:53
+  uid: MyString

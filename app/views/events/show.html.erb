@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Uid:</strong>
-  <%= @event.uid %>
-</p>
-
-<p>
   <strong>Type:</strong>
   <%= @event.type %>
 </p>
 
 <p>
-  <strong>Startdate:</strong>
-  <%= @event.startDate %>
+  <strong>Start:</strong>
+  <%= @event.start %>
 </p>
 
 <p>
-  <strong>Enddate:</strong>
-  <%= @event.endDate %>
+  <strong>End:</strong>
+  <%= @event.end %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @event.uid %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
