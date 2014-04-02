@@ -1,6 +1,6 @@
 require 'active_support/inflector'
 
-guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' },
+guard 'spork', :cucumber => false,
                :rspec_env    => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
   watch('config/environment.rb')
@@ -14,8 +14,6 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' },
 end
 
 guard 'rspec', all_after_pass: false, cli: '--drb' do
-
-
   watch('config/routes.rb')
   # Custom Rails Tutorial specs
   watch(%r{^app/controllers/(.+)_(controller)\.rb$}) do |m|
