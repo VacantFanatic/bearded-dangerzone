@@ -11,18 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402163217) do
+ActiveRecord::Schema.define(version: 20140403163635) do
 
   create_table "employees", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.string   "userid"
+    t.string   "remember_token"
   end
 
-  add_index "employees", ["uid"], name: "index_employees_on_uid", unique: true
+  add_index "employees", ["remember_token"], name: "index_employees_on_remember_token"
+  add_index "employees", ["userid"], name: "index_employees_on_userid", unique: true
 
   create_table "events", force: true do |t|
     t.string   "type"

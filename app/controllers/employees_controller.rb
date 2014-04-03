@@ -10,6 +10,7 @@ class EmployeesController < ApplicationController
   # GET /employees/1
   # GET /employees/1.json
   def show
+    @employee = Employee.find(params[:id])
   end
 
   # GET /employees/new
@@ -25,15 +26,12 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     @employee = Employee.new(employee_params)
-
-    respond_to do |format|
-      if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @employee }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
-      end
+    if @employee.save
+ #     sign_in @user
+      flash[:success] = "Welcome #{@employee.name}!"
+      redirect_to @employee
+    else
+      render 'new'
     end
   end
 
@@ -69,6 +67,6 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:name, :email, :uid)
+      params.require(:employee).permit(:name, :email, :userid,:password,:password_confirmation)
     end
 end

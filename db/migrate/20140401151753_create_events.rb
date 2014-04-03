@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :type
       t.datetime :start
       t.datetime :end
-      t.string :uid
+      t.string :userid
 
       t.timestamps
     end

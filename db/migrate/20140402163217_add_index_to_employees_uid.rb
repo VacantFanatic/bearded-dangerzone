@@ -1,5 +1,5 @@
 class AddIndexToEmployeesUid < ActiveRecord::Migration
   def change
-    add_index :employees, :uid, unique: true
+    add_index :employees, :userid, unique: true
   end
 end

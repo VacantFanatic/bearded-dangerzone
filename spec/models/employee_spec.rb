@@ -1,23 +1,42 @@
 require 'spec_helper'
 
 describe Employee do
-
+  
   before do
-    @employee = Employee.new(name: "Example User", email: "user@example.com", uid: "123456"
-                     password: "foobar", password_confirmation: "foobar")
+    @employee = Employee.new(name: "Example User", email: "user@example.com", userid: "123456", password: "foobar", password_confirmation: "foobar")
   end
 
   subject { @employee }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
-  it { should respond_to(:uid) }
+  it { should respond_to(:userid) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_token) }
+  it { should respond_to(:authenticate) }
+
 
   it { should be_valid }
 
+    describe "return value of authenticate method" do
+      before { @employee.save }
+    
+      let(:found_user) { Employee.find_by(email: @employee.email) }
+
+      describe "with valid password" do
+        it { should eq found_user.authenticate(@employee.password) }
+      end
+
+      describe "with invalid password" do
+        let(:user_for_invalid_password) { found_user.authenticate("invalid") }
+
+        it { should_not eq user_for_invalid_password }
+        specify { expect(user_for_invalid_password).to be_false }
+      end
+    end
+  
   describe "when name is not present" do
     before { @employee.name = " " }
     it { should_not be_valid }
@@ -28,8 +47,8 @@ describe Employee do
     it { should_not be_valid }
   end
   
-  describe "when UID is not present" do
-    before { @employee.uid = " " }
+  describe "when userid is not present" do
+    before { @employee.userid = " " }
     it { should_not be_valid }
   end
   
@@ -74,12 +93,20 @@ describe Employee do
   
   describe "when user ID address is already taken" do
     before do
-      user_with_same_UID = @employee.dup
-      user_with_same_UID.email = @employee.email.upcase
-      user_with_same_UID.save
+      user_with_same_userid = @employee.dup
+      user_with_same_userid.email = @employee.email.upcase
+      user_with_same_userid.save
     end
     it { should_not be_valid }
   end
   
+    describe "with a password that's too short" do
+      before { @employee.password = @employee.password_confirmation = "a" * 5 }
+      it { should be_invalid }
+    end
+  describe "remember token" do
+    before { @employee.save }
+    its(:remember_token) { should_not be_blank }
+  end
 end
 
