@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403163635) do
+ActiveRecord::Schema.define(version: 20140404191352) do
 
   create_table "employees", force: true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140403163635) do
     t.string   "password_digest"
     t.string   "userid"
     t.string   "remember_token"
+    t.boolean  "admin",           default: false
   end
 
   add_index "employees", ["remember_token"], name: "index_employees_on_remember_token"
@@ -30,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140403163635) do
     t.string   "type"
     t.datetime "start"
     t.datetime "end"
-    t.string   "uid"
+    t.string   "userid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
