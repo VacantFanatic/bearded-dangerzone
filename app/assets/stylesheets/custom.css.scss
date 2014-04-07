@@ -177,7 +177,7 @@ input {
 
 /* Users index */
 
-.users {
+.employees {
   list-style: none;
   margin: 0;
   li {
@@ -188,4 +188,34 @@ input {
       border-bottom: 1px solid $grayLighter;
     }
   }
+}
+
+/* events */
+
+.events {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.event_type {
+  display: block;
+}
+
+.timestamp {
+  color: $grayLight;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+.compressed{
+  border: 1px solid #bbb;
+  background-color: lightred;
+  padding: 10px 0;
+  width: 100%;
+  @include box_sizing;
 }

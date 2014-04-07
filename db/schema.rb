@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20140404191352) do
 
   create_table "employees", force: true do |t|
+    t.string   "userid"
+    t.string   "password_digest"
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "userid"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
   end
@@ -28,12 +28,14 @@ ActiveRecord::Schema.define(version: 20140404191352) do
   add_index "employees", ["userid"], name: "index_employees_on_userid", unique: true
 
   create_table "events", force: true do |t|
-    t.string   "type"
-    t.datetime "start"
-    t.datetime "end"
-    t.string   "userid"
+    t.string   "event_type"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "events", ["employee_id", "created_at"], name: "index_events_on_employee_id_and_created_at"
 
 end

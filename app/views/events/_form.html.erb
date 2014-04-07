@@ -1,33 +1,20 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<% provide(:title, 'New Event') %>
 
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@event) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
+      <%= f.label :event_type %>
+      <%= f.select :event_type, options_for_select(%w[Compressed Vacation Volunteer]) %>
+
+      <%= f.label :start_date %><br>
+      <%= f.datetime_select :start_date %>
+
+      <%= f.label :end_date %><br>
+      <%= f.datetime_select :end_date %>
+
+      <%= f.submit "Create event", class: "btn btn-large btn-primary" %>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :start %><br>
-    <%= f.datetime_select :start %>
-  </div>
-  <div class="field">
-    <%= f.label :end %><br>
-    <%= f.datetime_select :end %>
-  </div>
-  <div class="field">
-    <%= f.label :uid %><br>
-    <%= f.text_field :uid %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

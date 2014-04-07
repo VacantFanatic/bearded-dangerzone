@@ -1,7 +1,8 @@
 class EmployeesController < ApplicationController
-  before_action :signed_in_employee, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_employee,   only: [:index, :edit, :update, :destroy]
+  before_action :correct_user,         only: [:edit, :update]
+  before_action :set_employee,         only: [:show, :edit, :update, :destroy]
+  before_action :admin_user,           only: :destroy
 
   # GET /employees
   # GET /employees.json
@@ -13,6 +14,7 @@ class EmployeesController < ApplicationController
   # GET /employees/1.json
   def show
     @employee = Employee.find(params[:id])
+    @events = @employee.events.paginate(page: params[:page])
   end
 
   # GET /employees/new
@@ -52,11 +54,9 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    @employee.destroy
-    respond_to do |format|
-      format.html { redirect_to employees_url }
-      format.json { head :no_content }
-    end
+    Employee.find(params[:id]).destroy
+    flash[:success] = "Employee deleted."
+    redirect_to employees_url
   end
 
   private
@@ -67,7 +67,11 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:name, :email, :userid,:password,:password_confirmation)
+      if current_user.admin?
+          params.require(:employee).permit(:name, :email,:userid,:password,:password_confirmation, :admin)
+      else
+          params.require(:employee).permit(:name, :email,:userid,:password,:password_confirmation)     
+      end
     end
   
   # Before filters
@@ -81,5 +85,9 @@ class EmployeesController < ApplicationController
     def correct_user
       @employee = Employee.find(params[:id])
       redirect_to(root_url) unless current_user?(@employee)
+    end
+  
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end

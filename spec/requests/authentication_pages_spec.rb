@@ -70,7 +70,7 @@ describe "Authentication" do
 
         describe "after signing in" do
           it "should render the desired protected page" do
-            print page.html
+            #print page.html
             expect(page).to have_title('Edit employee')
           end
         end
@@ -86,6 +86,18 @@ describe "Authentication" do
         describe "submitting to the update action" do
           before { patch employee_path(employee) }
           specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
+      
+      describe "as non-admin user" do
+        let(:employee) { FactoryGirl.create(:employee) }
+        let(:non_admin) { FactoryGirl.create(:employee) }
+
+        before { sign_in non_admin, no_capybara: true }
+
+        describe "submitting a DELETE request to the Employees#destroy action" do
+          before { delete employee_path(employee) }
+          specify { expect(response).to redirect_to(root_url) }
         end
       end
     end

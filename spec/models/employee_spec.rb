@@ -17,6 +17,7 @@ describe Employee do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:events) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -121,5 +122,21 @@ describe Employee do
     before { @employee.save }
     its(:remember_token) { should_not be_blank }
   end
+  
+  describe "event associations" do
+
+    before { @employee.save }
+    let!(:older_event) do
+      FactoryGirl.create(:event, employee: @employee, start_date: 14.days.from_now, end_date: 30.days.from_now, created_at: 1.day.ago)
+    end
+    let!(:newer_event) do
+      FactoryGirl.create(:event, employee: @employee, start_date: 3.days.from_now, end_date: 120.days.from_now, created_at: 1.hour.ago)
+    end
+
+    it "should have the right microposts in the right order" do
+      expect(@employee.events.to_a).to eq [newer_event, older_event]
+    end
+  end
+  
 end
 

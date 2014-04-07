@@ -1,20 +1,25 @@
 <% provide(:title, @employee.name) %>
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @employee.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @employee.email %>
-</p>
-
-<p>
-  <strong>User ID:</strong>
-  <%= @employee.userid %>
-</p>
-
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @employee.name %>
+      </h1>
+    </section>
+    <%= if current_user?(@employee)
+            link_to "Update Profile", edit_employee_path, class: "btn btn-warning btn-xs"
+    end %>
+    <%= if current_user?(@employee)
+        link_to "Add Calendar Event", new_event_path, class: "btn btn-primary btn-xs"
+     end %>
+  </aside>
+<div class="span8">
+    <% if @employee.events.any? %>
+      <h3>Events (<%= @employee.events.count %>)</h3>
+      <ol class="events">
+        <%= render @events %>
+      </ol>
+      <%= will_paginate @events %>
+    <% end %>
+</div>
+</div>
