@@ -22,8 +22,8 @@ namespace :db do
     employees = Employee.all(limit: 6)
     50.times do
       event_type = "Compressed"
-      start_date =  Date.today - rand(500).days 
-      end_date =    start_date + (1 + rand(1000)).days 
+      start_date =  Date.today + rand(30).days 
+      end_date =    start_date + (1 + rand(90)).days 
       employees.each { |employee| employee.events.create!(event_type: event_type, start_date: start_date, end_date: end_date) }
     end
     

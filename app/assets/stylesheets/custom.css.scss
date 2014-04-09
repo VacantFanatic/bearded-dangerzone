@@ -191,6 +191,11 @@ input {
 }
 
 /* events */
+select.date-select {
+    width:auto;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+}
 
 .events {
   list-style: none;
@@ -201,6 +206,7 @@ input {
     border-top: 1px solid #e8e8e8;
   }
 }
+
 .event_type {
   display: block;
 }
@@ -212,10 +218,19 @@ input {
   float: left;
   margin-right: 10px;
 }
+
 .compressed{
-  border: 1px solid #bbb;
-  background-color: lightred;
-  padding: 10px 0;
+  border: 3px solid red;
+  background-color: #FF9999;
+  padding: 10px 10px;
+  width: 100%;
+  @include box_sizing;
+}
+
+.vacation{
+  border: 3px solid blue;
+  background-color: #99CCFF;
+  padding: 10px 10px;
   width: 100%;
   @include box_sizing;
 }

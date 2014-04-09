@@ -6,12 +6,14 @@
         <%= @employee.name %>
       </h1>
     </section>
-    <%= if current_user?(@employee)
-            link_to "Update Profile", edit_employee_path, class: "btn btn-warning btn-xs"
-    end %>
-    <%= if current_user?(@employee)
-        link_to "Add Calendar Event", new_event_path, class: "btn btn-primary btn-xs"
-     end %>
+    <% if current_user?(@employee) %>
+      <%= link_to "Update My Profile", edit_employee_path, class: "btn btn-xs btn-warning" %>
+    <% end %>
+    <br>
+    <br>
+    <% if current_user?(@employee) %>
+        <%= link_to "Add Calendar Event", new_event_path, class: "btn btn-xs btn-primary" %>
+     <% end %>
   </aside>
 <div class="span8">
     <% if @employee.events.any? %>

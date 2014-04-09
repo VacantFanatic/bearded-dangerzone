@@ -14,7 +14,7 @@ class EmployeesController < ApplicationController
   # GET /employees/1.json
   def show
     @employee = Employee.find(params[:id])
-    @events = @employee.events.paginate(page: params[:page])
+    @events = @employee.events.where("events.start_date > ?", Time.now.beginning_of_day).paginate(page: params[:page])
   end
 
   # GET /employees/new
@@ -75,15 +75,9 @@ class EmployeesController < ApplicationController
     end
   
   # Before filters
-  def signed_in_employee
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: "Please sign in."
-      end
-    end
 
     def correct_user
-      @employee = Employee.find(params[:id])
+      set_employee
       redirect_to(root_url) unless current_user?(@employee)
     end
   
