@@ -7,21 +7,20 @@
       </h1>
     </section>
     <% if current_user?(@employee) %>
-      <%= link_to "Update My Profile", edit_employee_path, class: "btn btn-xs btn-warning" %>
+      <%= link_to "Update My Profile", edit_employee_path, class: "btn btn-small btn-warning" %>
     <% end %>
-    <br>
-    <br>
+    <br><br>
     <% if current_user?(@employee) %>
-        <%= link_to "Add Calendar Event", new_event_path, class: "btn btn-xs btn-primary" %>
+        <%= link_to "Add Calendar Event", new_event_path, class: "btn btn-small btn-primary" %>
      <% end %>
   </aside>
-<div class="span8">
+  <div class="offset2 span5">
     <% if @employee.events.any? %>
       <h3>Events (<%= @employee.events.count %>)</h3>
-      <ol class="events">
-        <%= render @events %>
-      </ol>
+      <div class="events">
+          <%= render @events %>
+      </div>
       <%= will_paginate @events %>
     <% end %>
-</div>
+  </div>
 </div>

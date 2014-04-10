@@ -33,7 +33,8 @@ class EventsController < ApplicationController
       flash[:success] = "Event created!"
       redirect_to @event
     else
-      render 'static_pages/home'
+      flash[:error] = "Couldn't create that event."
+      redirect_to employee_path(@event.employee_id)
     end
   end
 

@@ -1,12 +1,11 @@
 <li>
-  <tr>
-    <td><%= link_to employee.name, employee %></td>
-  <% if current_user.admin? && !current_user?(employee) %>
-    | 
-    <td><%= link_to "delete", employee, method: :delete,
+  <div class="row">
+  <div class="span2"><%= link_to employee.name, employee %></div>
+   <% if current_user.admin? && !current_user?(employee) %>
+    <div class="span2"><%= link_to "delete", employee, method: :delete,
                                   data: { confirm: "You sure?" },
-                                  class: "btn btn-danger btn-xs"  %>
-    </td>
+                                  class: "btn btn-danger btn-small"  %>
+    </div>
   <% end %>
-  </tr>
+  </div>
 </li>

@@ -158,6 +158,10 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
+select.input-mini{
+  width: auto;
+}
+
 input {
   height: auto !important;
 }
@@ -191,17 +195,13 @@ input {
 }
 
 /* events */
-select.date-select {
-    width:auto;
-    border: 1px solid #cccccc;
-    background-color: #ffffff;
-}
-
 .events {
   list-style: none;
   margin: 10px 0 0 0;
 
   li {
+    list-style-type: none;
+    list-style-image: none;
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
@@ -209,6 +209,17 @@ select.date-select {
 
 .event_type {
   display: block;
+  border: 2px solid grey;
+  border-radius:25px;
+  box-shadow: 10px 10px 5px #888888;
+  padding: 10px 40px;
+  width: 100%;
+  main-section {
+    span: 4 // Mixin provided by Bootstrap
+  }
+  aside {
+    span: 8 // Mixin provided by Bootstrap
+  }
 }
 
 .timestamp {
@@ -220,17 +231,24 @@ select.date-select {
 }
 
 .compressed{
-  border: 3px solid red;
+  @extend .event_type;
   background-color: #FF9999;
-  padding: 10px 10px;
-  width: 100%;
-  @include box_sizing;
 }
 
 .vacation{
-  border: 3px solid blue;
+  @extend .event_type;
   background-color: #99CCFF;
-  padding: 10px 10px;
-  width: 100%;
-  @include box_sizing;
+}
+
+.volunteer{
+  @extend .event_type;
+  background-color: #99FF99;
+}
+
+/*buttons*/
+
+small-warning-btn{
+  @extend .btn;
+  @extend .btn-warning;
+  @extend .btn-small;
 }

@@ -1,16 +1,18 @@
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for @event do |f| %>
+    <%= form_for(@event) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :event_type %>
       <%= f.select :event_type, options_for_select(%w[Compressed Vacation Volunteer]) %>
 
       <%= f.label :start_date %><br>
-      <%= f.datetime_select :start_date %>
+      <%= f.datetime_select :end_date, {:order => [:day, :month, :year], :start_year => 2010, :end_year => 2016},
+          {:class => "input-mini"}  %>
 
       <%= f.label :end_date %><br>
-      <%= f.datetime_select :end_date %>
+      <%= f.datetime_select :end_date, {:order => [:day, :month, :year], :start_year => 2010, :end_year => 2016},
+          {:class => "input-mini"}  %>
 
       <%= f.submit "Create Event", class: "btn btn-large btn-primary" %>
     <% end %>

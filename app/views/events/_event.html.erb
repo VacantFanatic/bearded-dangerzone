@@ -1,7 +1,18 @@
 <li>
-      <div class = <%= event.event_type.downcase %>>
-          <div class="event_type">   <%= link_to event.event_type, event_path(event.id) %>          </div>
+<div class=<%= event.event_type.downcase %>>
+    <div class="row">    
+      <main-section class="span3">
+          <div><%= link_to event.event_type, event_path(event.id) %> </div>
           <div class="timestamp">    Start: <%= event.start_date.to_formatted_s(:long) %> </div>
           <div class = "timestamp">  End:   <%= event.end_date.to_formatted_s(:long) %>   </div>
+      </main-section>
+      <aside class="span3">
+          <% if current_user?(event.employee) %>
+              <%= link_to "Update Event", edit_event_path(event.id), class: "btn btn-mini btn-warning" %>
+          <% end %>
+      </aside>
     </div>
+</div>
 </li>
+
+

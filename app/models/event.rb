@@ -5,8 +5,19 @@ class Event < ActiveRecord::Base
   default_scope -> { order('start_date ASC') }
   default_scope -> { order('created_at DESC') }
   
-  validates :employee_id, presence: true
-  validates :start_date, presence: true
-  validates :end_date, presence: true
-  validate :event_type, presence: true, inclusion: { in: %w(compressed vacation volunteer), message: "%{value} is not a valid size" }
+  validate    :valid_start_date
+  validates   :employee_id, presence: true
+  validates   :start_date, presence: true
+  validates   :end_date, presence: true 
+  validate    :event_type, presence: true, inclusion: { in: %w(compressed vacation volunteer), message: "%{value} is not a valid type" }
+  
+  def valid_start_date
+    events = Employee.find(employee_id).events
+    events.each do |e|
+        if start_date == e.start_date
+          errors.add(:start_date, "An event already exists for this period.")
+        end
+     end
+  end
+  
 end

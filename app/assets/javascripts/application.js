@@ -17,3 +17,7 @@
 //= require bootstrap-datepicker-rails
 //= require turbolinks
 //= require_tree .
+
+    $(function() {
+         $('#dp5').datepicker()
+       });
