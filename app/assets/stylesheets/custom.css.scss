@@ -211,7 +211,6 @@ input {
   display: block;
   border: 2px solid grey;
   border-radius:25px;
-  box-shadow: 10px 10px 5px #888888;
   padding: 10px 40px;
   width: 100%;
   main-section {
@@ -232,17 +231,17 @@ input {
 
 .compressed{
   @extend .event_type;
-  background-color: #FF9999;
+  background-color: #FFE6E6;
 }
 
 .vacation{
   @extend .event_type;
-  background-color: #99CCFF;
+  background-color: #CCE0F5;
 }
 
 .volunteer{
   @extend .event_type;
-  background-color: #99FF99;
+  background-color: #E6FAE6;
 }
 
 /*buttons*/

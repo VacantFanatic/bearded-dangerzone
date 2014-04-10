@@ -14,7 +14,7 @@
         <%= link_to "Add Calendar Event", new_event_path, class: "btn btn-small btn-primary" %>
      <% end %>
   </aside>
-  <div class="offset2 span5">
+  <div class="offset1 span5">
     <% if @employee.events.any? %>
       <h3>Events (<%= @employee.events.count %>)</h3>
       <div class="events">

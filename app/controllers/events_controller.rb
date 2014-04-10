@@ -33,7 +33,9 @@ class EventsController < ApplicationController
       flash[:success] = "Event created!"
       redirect_to @event
     else
-      flash[:error] = "Couldn't create that event."
+      @event.errors.each do |attribute, message|
+        flash[:error] = message
+      end
       redirect_to employee_path(@event.employee_id)
     end
   end

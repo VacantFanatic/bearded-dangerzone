@@ -4,10 +4,10 @@
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :event_type %>
-      <%= f.select :event_type, options_for_select(%w[Compressed Vacation Volunteer]) %>
+      <%= f.select :event_type, options_for_select(%w[Compressed Personal Vacation Volunteer]) %>
 
       <%= f.label :start_date %><br>
-      <%= f.datetime_select :end_date, {:order => [:day, :month, :year], :start_year => 2010, :end_year => 2016},
+      <%= f.datetime_select :start_date, {:order => [:day, :month, :year], :start_year => 2010, :end_year => 2016},
           {:class => "input-mini"}  %>
 
       <%= f.label :end_date %><br>
