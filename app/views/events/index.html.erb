@@ -9,11 +9,11 @@
   <% end %>
   <div class="row">
     <div class="offset4">
-    <li>
-    <div class="span2"><%= e.employee.name %></div>
-    <div class="span1"> | </div>
-    <div class="span2"><%= e.event_type %> </div>
-    </li>
+    <div class="span2">
+      <ul class = <%= e.event_type.downcase %>>
+        <%= e.employee.name %>
+       </ul>
+      </div>
     </div>
   </div>
 <% end %>

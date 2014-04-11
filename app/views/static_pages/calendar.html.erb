@@ -27,6 +27,7 @@
                 cal_events = cal_events.end_range(cal.to_datetime.end_of_day)
           %>
           <% cal_events.each do |event| %>
+          <ul class=<%= event.event_type.downcase %> id=<%= event.id%>><%= link_to event.employee.name, employee_path(event.employee.id) %></ul>
           <% end %>
           <% cal += 1 %>
         <% end %>

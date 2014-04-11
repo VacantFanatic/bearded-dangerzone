@@ -256,3 +256,28 @@ small-warning-btn{
   @extend .btn-warning;
   @extend .btn-small;
 }
+
+/* Calendar */
+
+.calendar {
+  width: auto;
+  th{
+    border: 2px solid grey;
+    padding: 10px 40px;
+  }
+  td{
+    border: 2px solid grey;
+    padding: 0px 5px;
+    width: auto;
+    .date{
+       text-align: left;
+       vertical-align:top;
+       font-weight: bold;
+    }
+    ul{
+      padding: 3px;
+      width: auto;
+      text-align: center;
+    }
+  }
+}

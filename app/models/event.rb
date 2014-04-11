@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
   default_scope -> { order('start_date ASC') }
   default_scope -> { order('created_at DESC') }
   
+  validate    :valid_duration
   validate    :valid_start_date
   validates   :employee_id, presence: true
   validates   :start_date, presence: true
@@ -14,7 +15,7 @@ class Event < ActiveRecord::Base
   validate    :event_type, presence: true, inclusion: { in: %w(compressed vacation volunteer personal), message: "%{value} is not a valid type" }
   
   def valid_duration
-    if self.event_type != "vacation" && self.duration > ONE_DAY
+    if self.event_type.downcase != "vacation" && self.duration > ONE_DAY
       errors.add(:end_date, "The selected event type cannot be longer than 24 hours")
     end
   end

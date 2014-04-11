@@ -16,7 +16,7 @@
   </aside>
   <div class="offset1 span5">
     <% if @employee.events.any? %>
-      <h3>Events (<%= @employee.events.count %>)</h3>
+      <h3>Upcoming Events (<%= @employee.events.start_range(Time.now).count %>)</h3>
       <div class="events">
           <%= render @events %>
       </div>
