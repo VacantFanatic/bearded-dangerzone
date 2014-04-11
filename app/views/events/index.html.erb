@@ -1,11 +1,11 @@
 <h1>Listing events</h1>
 <% header = 1.days.from_now.to_date %>
-<h2><%= header %></h2>
+<h2><%= header.strftime("%A %B %d, %Y") %></h2>
 <% @events.each do |e|%>
   <% date = e.start_date.to_date %>
   <% if header < date %> 
-      <% header = date %>
-  <h2><%= header %> </h2>
+  <% header = date %>
+  <h2><%= header.strftime("%A %B %d, %Y") %> </h2>
   <% end %>
   <div class="row">
     <div class="offset4">

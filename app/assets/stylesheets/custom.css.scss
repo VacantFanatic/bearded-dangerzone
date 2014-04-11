@@ -244,6 +244,11 @@ input {
   background-color: #E6FAE6;
 }
 
+.personal{
+  @extend .event_type;
+  background-color: #E0CCE0;
+}
+
 /*buttons*/
 
 small-warning-btn{

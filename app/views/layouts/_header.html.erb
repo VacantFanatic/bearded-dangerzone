@@ -13,7 +13,8 @@
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Employees", employees_path %></li>
-                <li><%= link_to "Full Calendar", events_path %>
+                <li><%= link_to "Agenda", events_path %></li>
+                <li><%= link_to "Calendar", calendar_path %></li>
               </ul>
             </li>
             <li id="fat-menu" class="dropdown">
@@ -23,6 +24,9 @@
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", current_user %></li>
                 <li><%= link_to "Settings", edit_employee_path(current_user) %></li>
+                <% if current_user.admin? %>
+                <li><%= link_to "Administration", "#" %></li>
+                <% end %>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>

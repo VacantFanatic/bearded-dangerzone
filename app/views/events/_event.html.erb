@@ -8,7 +8,11 @@
       </main-section>
       <aside class="span3">
           <% if current_user?(event.employee) %>
-              <%= link_to "Update Event", edit_event_path(event.id), class: "btn btn-mini btn-warning" %>
+              <%= link_to "Update Event", edit_event_path(event.id), 
+                                          class: "btn btn-mini btn-warning" %>
+              <%= link_to "Delete", event, method: :delete,
+                                  data: { confirm: "You sure?" },
+                                  class: "btn btn-mini btn-danger"  %>
           <% end %>
       </aside>
     </div>

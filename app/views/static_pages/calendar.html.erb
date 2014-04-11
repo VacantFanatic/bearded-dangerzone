@@ -1,0 +1,37 @@
+<% provide(:title, 'Calendar') %>
+<%
+  t = Time.now
+  cal = Date.new(t.year, t.month)
+  cur_month = t.month
+%>
+  
+  <H1><%= cal.strftime "%B %Y" %></H1>
+  <table class = "calendar">
+    <tr>
+      <th>Sunday</th>
+      <th>Monday</th>
+      <th>Tuedsday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+    </tr>
+    <%(1..5).each do |wk| %>
+    <tr class= "week" id=<%=wk%>>
+      <%(0..6).each do |wd| %>
+        <td class="day" id=<%=cal.day%>>
+        <% if wd == cal.wday && cal.month == cur_month %>
+          <div class="date"><%= cal.day %></div>
+          <%    cal_events = Event.scoped
+                cal_events = cal_events.start_range(cal.to_datetime.beginning_of_day)
+                cal_events = cal_events.end_range(cal.to_datetime.end_of_day)
+          %>
+          <% cal_events.each do |event| %>
+          <% end %>
+          <% cal += 1 %>
+        <% end %>
+      </td>
+     <% end %>
+    </tr>
+    <% end %>
+  </table>
